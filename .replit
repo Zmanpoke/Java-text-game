@@ -1,0 +1,26 @@
+modules = ["java-graalvm22.3"]
+[agent]
+expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Java App"
+
+[[workflows.workflow]]
+name = "Java App"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "javac Main.java && java Main"
+
+[workflows.workflow.metadata]
+outputType = "console"
